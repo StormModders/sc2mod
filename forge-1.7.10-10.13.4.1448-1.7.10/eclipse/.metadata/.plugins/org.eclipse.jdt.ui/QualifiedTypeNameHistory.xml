@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="com.hohmangaming.starcraftmod.entity.RenderZergling"/>
+<fullyQualifiedTypeName name="com.hohmangaming.starcraftmod.block.StarcraftModelBasedTileEntitySpecialRenderer"/>
+<fullyQualifiedTypeName name="com.hohmangaming.starcraftmod.entity.EntityZergling"/>
+<fullyQualifiedTypeName name="com.hohmangaming.starcraftmod.units.ModelZergling"/>
+<fullyQualifiedTypeName name="com.hohmangaming.starcraftmod.units.UnitBanshee"/>
+<fullyQualifiedTypeName name="com.hohmangaming.starcraftmod.Ids"/>
+</qualifiedTypeNameHistroy>
