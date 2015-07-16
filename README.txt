@@ -36,4 +36,7 @@ SETTING UP forge (not needed if using git)
 	gradlew setupDevWorkspace
 	gradlew eclipse
 
+	# install source
+	gradlew setupDecompWorkspace --refresh-dependencies
+
 	
