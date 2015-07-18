@@ -1,0 +1,18 @@
+1437018784842	Delete element
+1437241314051	Rename local variable 'par1'
+1437241489226	Rename field 'IIconFront'
+1437241491842	Rename field 'IIconBack'
+1437241494429	Rename field 'IIconTop'
+1437241496937	Rename field 'IIconSide'
+1437245840025	Rename field 'eventmanager'
+1437246227370	Rename type 'BiomeInitializer'
+1437247886680	Rename field 'biomeVespeneDesert'
+1437247891959	Rename field 'biomeVespeneOcean'
+1437249567691	Rename method 'makeBiome'
+1437249575471	Rename method 'makeBiome'
+1437249588092	Rename method 'makeAndRegisterBiome'
+1437249594659	Rename method 'makeAndRegisterBiome'
+1437250279621	Delete element
+1437250511369	Rename method 'generateVespian'
+1437251666923	Copy compilation unit
+1437252279578	Rename field 'buildcraftFluidVespene'

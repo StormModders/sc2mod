@@ -1,0 +1,5 @@
+package com.hohmangaming.starcraftmod.worldgen;
+
+public class GenLayerBiomeReplacer {
+
+}

@@ -1,0 +1,63 @@
+package com.hohmangaming.starcraftmod.block;
+
+import java.util.Random;
+
+import com.hohmangaming.starcraftmod.Ids;
+
+import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.util.AxisAlignedBB;
+import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
+
+public class BlockCreep extends Block {
+
+	public BlockCreep() {
+		super(Material.grass);
+        this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.125F, 1.0F);
+        this.setTickRandomly(true);
+        this.setCreativeTab(CreativeTabs.tabDecorations);
+    	this.setBlockName("blockCreep");
+		this.setBlockTextureName("starcraftmod:creep");
+        this.setTickRandomly(true);
+	}
+	
+    /**
+     * Is this block (a) opaque and (b) a full 1m cube?  This determines whether or not to render the shared face of two
+     * adjacent blocks and also whether the player can attach torches, redstone wire, etc to this block.
+     */
+	@Override
+    public boolean isOpaqueCube()
+    {
+        return false;
+    }
+
+    /**
+     * If this block doesn't render as an ordinary block it will return False (examples: signs, buttons, stairs, etc)
+     */
+	@Override
+    public boolean renderAsNormalBlock()
+    {
+        return false;
+    }
+
+    /**
+     * calls setBlockBounds based on the depth of the snow. Int is any values 0x0-0x7, usually this blocks metadata.
+     */
+	@Override
+    protected void setBlockBoundsForSnowDepth(int par1)
+    {
+        int j = par1 & 7;
+        float f = (float)(2 * (1 + j)) / 16.0F;
+        this.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, f, 1.0F);
+    }
+
+    /**
+     * Ticks the block if it's been scheduled
+     */
+    public void updateTick(World par1World, int par2, int par3, int par4, Random par5Random)
+    {
+    }
+
+}
