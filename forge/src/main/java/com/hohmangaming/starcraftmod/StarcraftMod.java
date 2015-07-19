@@ -6,9 +6,9 @@ import com.hohmangaming.starcraftmod.block.BlockMineral;
 import com.hohmangaming.starcraftmod.block.BlockRefinery;
 import com.hohmangaming.starcraftmod.block.BlockRichMineral;
 import com.hohmangaming.starcraftmod.block.BlockVespene;
+import com.hohmangaming.starcraftmod.block.FluidVespene;
+import com.hohmangaming.starcraftmod.block.MaterialVespene;
 import com.hohmangaming.starcraftmod.schematic.Schematic;
-import com.hohmangaming.starcraftmod.worldgen.BiomeGenVespeneDesert;
-import com.hohmangaming.starcraftmod.worldgen.BiomeGenVespeneOcean;
 import com.hohmangaming.starcraftmod.worldgen.StarcraftWorldGenerator;
 import com.hohmangaming.starcraftmod.worldgen.VespenePopulate;
 
@@ -24,6 +24,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
@@ -34,6 +35,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidRegistry;
 
 @Mod(modid = StarcraftMod.MODID, version = StarcraftMod.VERSION)
 public class StarcraftMod {
@@ -53,17 +55,10 @@ public class StarcraftMod {
         @SidedProxy(clientSide="com.hohmangaming.starcraftmod.ClientProxy", serverSide="com.hohmangaming.starcraftmod.CommonProxy")
         public static CommonProxy proxy;
        
-        /* 
-         * BLOCKS - our custom blocks
-         */
-        public static Block blockMineral = new BlockMineral();
-        public static Block blockRichMineral = new BlockRichMineral();
-        public static Block blockCreep = new BlockCreep();
-        public static Block blockHatchery = new BlockHatchery();
-    	public static Block blockVespene = new BlockVespene();
-    	public static Block blockRefinery = new BlockRefinery();
-
-//    	public static Block unitBanshee = new UnitBanshee();
+    	/*
+    	 * MATERIALS
+    	 */
+    	public static Material materialVespene;
     	
         /* 
          * ITEMS - our custom items
@@ -94,12 +89,6 @@ public class StarcraftMod {
 	    	.setTextureName("starcraftmod:redstoneCircuitHuge");
         
         public static StarcraftWorldGenerator starcraftWorldGenerator = new StarcraftWorldGenerator();
-
-        /* 
-         * BIOME CREATION AND REGISTRATION
-         */
-    	public static BiomeGenVespeneDesert biomeGenVespeneDesert = BiomeGenVespeneDesert.createAndRegisterBiome(Ids.BIOME_VESPENE_DESERT);
-    	public static BiomeGenVespeneOcean biomeGenVespeneOcean = BiomeGenVespeneOcean.createAndRegisterBiome(Ids.BIOME_VESPENE_OCEAN);
         
         /*
          * SCHEMATICS for structures
@@ -111,6 +100,16 @@ public class StarcraftMod {
          * FLUIDS
          */
     	public static Fluid fluidVespene;
+
+        /* 
+         * BLOCKS - our custom blocks
+         */
+        public static Block blockMineral;
+        public static Block blockRichMineral;
+        public static Block blockCreep;
+        public static Block blockHatchery;
+    	public static Block blockVespene;
+    	public static Block blockRefinery;
 
     	/*
     	 * ENTITIES
@@ -124,13 +123,27 @@ public class StarcraftMod {
 
         @EventHandler
         public void init(FMLInitializationEvent event) {
+
+        	// Vespene
+        	materialVespene = new MaterialVespene();
+	    	fluidVespene = new FluidVespene();
+	    	FluidRegistry.registerFluid(fluidVespene);
+        	blockVespene = new BlockVespene();
+	    	GameRegistry.registerBlock(blockVespene, "blockVespene");
+
+        	// All other blocks
+            blockMineral = new BlockMineral();
+            blockRichMineral = new BlockRichMineral();
+            blockCreep = new BlockCreep();
+            blockHatchery = new BlockHatchery();
+        	blockRefinery = new BlockRefinery();
+
         	
 	    	GameRegistry.registerBlock(blockMineral, "blockMineral");
 	    	GameRegistry.registerBlock(blockRichMineral, "blockRichMineral");
 	    	GameRegistry.registerBlock(blockCreep, "blockCreep");
 	    	GameRegistry.registerBlock(blockHatchery, "blockHatchery");
 	    	GameRegistry.registerBlock(blockRefinery, "blockRefinery");
-	    	GameRegistry.registerBlock(blockVespene, "blockVespene");
 //	    	GameRegistry.registerBlock(unitBanshee, "unitBanshee");
 	    	
 	    	
@@ -140,25 +153,6 @@ public class StarcraftMod {
 	    	GameRegistry.registerItem(itemBigRedstoneCircuit, "itemBigRedstoneCircuit");
 	    	GameRegistry.registerItem(itemHugeRedstoneCircuit, "itemHugeRedstoneCircuit");
 
-//	    	GameRegistry.addBiome(biomeGenInfested);
-//	    	GameRegistry.removeBiome(BiomeGenBase.plains);	    	
-//	    	GameRegistry.removeBiome(BiomeGenBase.desert);
-	    	
-	    	// BOBHO TODO - turn off biome gen for the moment
-//	    	BiomeManager.removeSpawnBiome(BiomeGenBase.beach);
-//	    	BiomeManager.removeSpawnBiome(BiomeGenBase.desertHills);
-//	    	BiomeManager.removeSpawnBiome(BiomeGenBase.extremeHills);
-//	    	BiomeManager.removeSpawnBiome(BiomeGenBase.extremeHillsEdge);
-//	    	BiomeManager.removeSpawnBiome(BiomeGenBase.forest);
-//	    	BiomeManager.removeSpawnBiome(BiomeGenBase.forestHills);
-//	    	BiomeManager.removeSpawnBiome(BiomeGenBase.frozenOcean);
-//	    	BiomeManager.removeSpawnBiome(BiomeGenBase.frozenRiver);
-//	    	BiomeManager.removeSpawnBiome(BiomeGenBase.jungle);
-//	    	BiomeManager.removeSpawnBiome(BiomeGenBase.jungleHills);
-//	    	BiomeManager.removeSpawnBiome(BiomeGenBase.ocean);
-//	    	BiomeManager.removeSpawnBiome(BiomeGenBase.taiga);
-//	    	BiomeManager.removeSpawnBiome(BiomeGenBase.taigaHills);
-	    	
 	      	// add a recipe for redstone circuit
         	//  S  r  S
         	//  r  I  r
@@ -235,9 +229,6 @@ public class StarcraftMod {
     	@EventHandler
     	public void postInit(FMLPostInitializationEvent evt) {
    			MinecraftForge.EVENT_BUS.register(VespenePopulate.INSTANCE);
-   			
-   			// BOBHO TODO - turn off biome creation
-//   			MinecraftForge.TERRAIN_GEN_BUS.register(new StarcraftModBiomeInitializer());
     	}
 
     	public static int getUniqueEntityId() {

@@ -1,6 +1,5 @@
 package com.hohmangaming.starcraftmod.block;
 
-import com.hohmangaming.starcraftmod.Ids;
 import com.hohmangaming.starcraftmod.StarcraftMod;
 
 import cpw.mods.fml.relauncher.Side;

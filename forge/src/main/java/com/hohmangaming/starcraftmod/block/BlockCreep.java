@@ -1,15 +1,8 @@
 package com.hohmangaming.starcraftmod.block;
 
-import java.util.Random;
-
-import com.hohmangaming.starcraftmod.Ids;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.world.IBlockAccess;
-import net.minecraft.world.World;
 
 public class BlockCreep extends Block {
 

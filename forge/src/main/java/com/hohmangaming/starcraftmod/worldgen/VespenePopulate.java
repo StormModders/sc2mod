@@ -51,7 +51,6 @@ public class VespenePopulate {
 	};
 
 	private VespenePopulate() {
-//		BuildCraftCore.debugMode = true;
 		surfaceDepositBiomes.add(BiomeGenBase.desert.biomeID);
 		surfaceDepositBiomes.add(BiomeGenBase.taiga.biomeID);
 
@@ -171,21 +170,19 @@ public class VespenePopulate {
 
 			// Generate Spout
 			// BOBHO TODO - not handling springs yet
-//			int baseY;
-//			if (type == GenType.LARGE && BuildCraftEnergy.spawnOilSprings && (BuildCraftCore.debugMode || rand.nextDouble() <= 0.25)) {
-//				baseY = 0;
-//			} else {
-//				baseY = wellY;
-//			}
-//
-//			if (world.getBlockId(wellX, baseY, wellZ) == Block.bedrock.blockID) {
-//				if (BuildCraftEnergy.spawnOilSprings) {
-//					world.setBlock(wellX, baseY, wellZ, BuildCraftCore.springBlock.blockID, 1, 3);
-//				}
-//			}
-//			for (int y = baseY + 1; y <= maxHeight; ++y) {
-//				world.setBlock(wellX, y, wellZ, StarcraftMod.blockVespene.blockID);
-//			}
+			int baseY;
+			if (type == GenType.LARGE && (StarcraftMod.debugMode || rand.nextDouble() <= 0.25)) {
+				baseY = 0;
+			} else {
+				baseY = wellY;
+			}
+
+			if (world.getBlock(wellX, baseY, wellZ) == Blocks.bedrock) {
+				world.setBlock(wellX, baseY, wellZ, StarcraftMod.blockVespene, 1, 3);  // this was a spring block
+			}
+			for (int y = baseY + 1; y <= maxHeight; ++y) {
+				world.setBlock(wellX, y, wellZ, StarcraftMod.blockVespene);
+			}
 
 			if (type == GenType.LARGE) {
 				for (int y = wellY; y <= maxHeight - wellHeight / 2; ++y) {
