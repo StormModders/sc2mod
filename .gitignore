@@ -13,3 +13,7 @@ hs_err_pid*
 
 forge/eclipse/logs/*
 forge/eclipse/crash-reports/*
+forge/eclipse/.metadata/.plugins/
+forge/eclipse/saves/
+forge/eclipse/.recommenders/
+*.lock
